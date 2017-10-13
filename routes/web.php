@@ -11,6 +11,11 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {
+    Route::get('/sign', 'SignController@index')->name('index');
 });
