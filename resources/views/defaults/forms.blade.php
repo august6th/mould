@@ -8,12 +8,10 @@
     <!-- CSS -->
     {{--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">--}}
     {{--<link rel="stylesheet" href="http://fonts.useso.com/css?family=Roboto:400,100,300,500">--}}
-    <link rel="stylesheet" href="/assets/css/dialog.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/css/lottery.css">
-    <link rel="stylesheet" href="/assets/css/mould.css">
-
+    <link rel="stylesheet" href="assets/css/form-elements.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="assets/ico/panda.png">
@@ -21,20 +19,14 @@
 </head>
 
 <body>
-<div class="container">
-    @include('layouts._header')
-    <div class="col-md-offset-1 col-md-10">
-        @yield('content')
-        @include('layouts._footer')
-    </div>
-</div>
-<!-- Javascript -->
+
+@yield('content')
+
+        <!-- Javascript -->
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/dialog.js"></script>
-<script src="/assets/js/jquery.totemticker.js"></script>
-<script src="/assets/js/lottery.js"></script>
-
+<script src="assets/js/jquery.backstretch.min.js"></script>
+<script src="assets/js/scripts.js"></script>
 </body>
 
 </html>

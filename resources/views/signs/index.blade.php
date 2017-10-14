@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('defaults.forms')
 @section('title', '签到')
 
 @section('content')

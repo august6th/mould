@@ -18,7 +18,7 @@ class JssdkController extends Controller
                 'onMenuShareWeibo',
                 'onMenuShareTimeline',
                 'onMenuShareAppMessage'
-            ), true, false
+            ), false
         );
 
         $config_json = json_encode($config);

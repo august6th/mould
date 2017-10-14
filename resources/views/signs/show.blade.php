@@ -2,26 +2,35 @@
 @section('title', '分享')
 
 @section('content')
-没什么特殊的内容
-
-
-
+    <div class="col-md-12 content">
+        参与分享。
+    </div>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     wx.config( {!! $config_json !!} );
     wx.ready(function () {
         var shareData = {
-            title: '乐清市模具展会邀请函',
-            desc: '欢迎参加',
-            link: 'http://baidu.com',
-            imgUrl: 'http://baidu.com/logo.jpg'
+            title: '2017年乐清市模具展会邀请函',
+            desc: '欢迎您来参加',
+            link: 'http://lh5.mouldzj.com/go',
+            imgUrl: 'http://lh5.mouldzj.com/assets/img/yqh.png',
+            success: function (res) {
+                alert('感谢您的分享！');
+            },
+            cancel: function (res) {
+                alert('您已取消了分享！');
+            }
         };
-        wx.onMenuShareAppMessage(shareData);
+
+        wx.onMenuShareQQ(shareData);
+        wx.onMenuShareWeibo(shareData);
         wx.onMenuShareTimeline(shareData);
+        wx.onMenuShareAppMessage(shareData);
     });
+
     wx.error(function (res) {
         alert(res.errMsg);
     });
 </script>
+@endsection
 
-@stop
