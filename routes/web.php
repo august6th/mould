@@ -18,5 +18,6 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {
-    Route::get('/sign', 'SignController@index')->name('index');
+    Route::get('/sign', 'SignController@index')->name('sign.index');
+    Route::get('/share', 'JssdkController@index')->name('share.index');
 });
