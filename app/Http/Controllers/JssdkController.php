@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Models\Sign;
 use EasyWeChat\OfficialAccount\Application;
 
 class JssdkController extends Controller
@@ -11,19 +13,27 @@ class JssdkController extends Controller
     public function index()
     {
         $wechat_user = session('wechat.oauth_user');
-        $app = new Application(['app_id' => env('WECHAT_APPID'), 'secret' => env('WECHAT_SECRET')]);
+        $openid = $wechat_user->getId();
+        $sign = Sign::where('openid', $openid)->count();
 
-        $config = $app->jssdk->getConfigArray(
-            array(
-                'onMenuShareQQ',
-                'onMenuShareWeibo',
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage'
-            ), false
-        );
+        if ($sign) {
+            $app = new Application(['app_id' => env('WECHAT_APPID'), 'secret' => env('WECHAT_SECRET')]);
 
-        $config_json = json_encode($config);
-        return view('signs.show', compact('config_json', 'wechat_user'));
+            $config = $app->jssdk->getConfigArray(
+                array(
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage'
+                ), false
+            );
+
+            $config_json = json_encode($config);
+            return view('signs.show', compact('config_json', 'wechat_user'));
+        } else {
+            session()->flash('danger','请先签到');
+            return redirect()->route('sign.index');
+        }
     }
 }
 
