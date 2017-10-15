@@ -17,6 +17,34 @@
                     </div>
                 </div>
             </div>
+            @if (count($errors) > 0)
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="alert alert-danger show-errors">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li><small>{{ $error }}</small></li>
+                                @endforeach
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                    @if(session()->has($msg))
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="flash-message">
+                                    <p class="alert alert-{{ $msg }} show-messages">
+                                        <small>{{ session()->get($msg) }}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
@@ -29,7 +57,7 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" action="#" method="post" class="login-form">
+                        <form role="form" action="{{ route('sign.store') }}" method="post" class="login-form">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">您的姓名</label>
@@ -38,7 +66,7 @@
 
                             <div class="form-group">
                                 <label class="sr-only" for="form-telphone">联系方式</label>
-                                <input type="text" name="tel" placeholder="联系方式..." class="form-telphone form-control" id="form-telphone" value="{{ old('tel') }}">
+                                <input type="text" name="telephone" placeholder="联系方式..." class="form-telphone form-control" id="form-telphone" value="{{ old('telephone') }}">
                             </div>
 
                             <div class="form-group">
