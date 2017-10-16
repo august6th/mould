@@ -104,28 +104,16 @@ function get_win_list(){
     }, 'json');
 }
 
+/*抽奖响应式*/
+
+
 var click = false;
 $(function() {
-    var lv = parseFloat(parseInt($('#lottery').width()) / 682);
-    $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
-    $('#lottery table').css({'top' : Math.floor(62 * lv) + 'px', 'left' : Math.floor(64 * lv) + 'px'});
-    $('#lottery table td').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
-    $('#lottery table td img').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(10 * lv) + 'px'});
-    $('#lottery table td a').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
-    $('.mask').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(3 * lv) + 'px' });
-    $('.lottery-head').css({'height' : Math.floor(286 * lv) + 'px'});
-    $('.lottery-list').css({'margin-left' : Math.floor(20 * lv) + 'px', 'margin-right' : Math.floor(20 * lv) + 'px'});
+
+    set_responsive();
 
     $(window).resize(function () {
-        var lv = parseFloat(parseInt($('#lottery').width()) / 682);
-        $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
-        $('#lottery table').css({'top' : Math.floor(62 * lv) + 'px', 'left' : Math.floor(62 * lv) + 'px'});
-        $('#lottery table td').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
-        $('#lottery table td img').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(10 * lv) + 'px'});
-        $('#lottery table td a').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
-        $('.mask').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(3 * lv) + 'px' });
-        $('.lottery-head').css({'height' : Math.floor(286 * lv) + 'px'});
-        $('.lottery-list').css({'margin-left' : Math.floor(20 * lv) + 'px', 'margin-right' : Math.floor(20 * lv) + 'px'});
+        set_responsive();
     })
 
     var ajax_url = "/lottery/get_win";
@@ -155,4 +143,16 @@ $(function() {
     });
     /*获取中奖信息*/
     get_win_list();
+
+    function set_responsive (){
+        var lv = parseFloat(parseInt($('#lottery').width()) / 682);
+        $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
+        $('#lottery table').css({'top' : Math.floor(62 * lv) + 'px', 'left' : Math.floor(64 * lv) + 'px'});
+        $('#lottery table td').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+        $('#lottery table td img').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(10 * lv) + 'px'});
+        $('#lottery table td a').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+        $('.mask').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(3 * lv) + 'px' });
+        $('.lottery-head').css({'height' : Math.floor(286 * lv) + 'px'});
+        $('.lottery-list').css({'margin-left' : Math.floor(20 * lv) + 'px', 'margin-right' : Math.floor(20 * lv) + 'px'});
+    }
 })
