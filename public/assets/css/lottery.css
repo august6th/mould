@@ -1,38 +1,26 @@
-.to_reg{
-    position: absolute;
-    top: 15px;
-    right: 110px;
-    width: 170px;
-    height: 90px;
-}
-.to_log{
-    position: absolute;
-    top: 705px;
-    right: 105px;
-    width: 180px;
-    height: 80px;
+.lottery-body{
+    width:100%;
+    text-align: center;
+    background-color:#fa483e;
 }
 
-.u_count{
-    position: absolute;
-    top:250px;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 50px;
-    color:#fee566;
+.lottery-head{
     width:100%;
+    background: url(../img/mlottery/head.png) no-repeat;
+    background-size: cover;
 }
-.u_count label{ float:left; }
-.c_count span{
-    margin-left: 20px;
+.np{
+    padding-left:0;
+    padding-right:0;
 }
 
 #lottery{
-    width: 750px;
-    height: 540px;
+    margin-top:20px;
+    display: inline-block;
+    width:90%;
     /*margin: 0px auto;*/
-    background: url(../img/lottery/lottery.png) no-repeat;
-    background-size: 100% 100%;
+    background: url(../img/mlottery/lottery.png) no-repeat;
+    background-size: cover;
     /*position: absolute;*/
     /*top: 110px;*/
     /*left: 150px;*/
@@ -46,49 +34,102 @@ img.wz{
     position: relative;
     /*padding-top:57px;*/
     /*padding-left: 65px;*/
-    top:57px;
-    left:65px;
+    top:20px;
+    left:31px;
 }
-#lottery table td{position:relative;width:105px;height:105px;text-align:center;color:#333;font-index:-999}
-#lottery table td img{display:block;width:90px;height:90px;border-radius: 20px;}
+#lottery table td{
+    position:relative;
+    width:180px;
+    height:180px;
+    text-align:center;
+    color:#333;
+}
+#lottery table td img{
+    display:block;
+    width:180px;
+    height:180px;
+    border-radius: 20px;
+    /*margin:10px 5px 0 2px;*/
+    margin-top:10px;
+    margin-right:3px;
+}
 #lottery table td a{
-    width:410px;
+    width:180px;
     /*width:90px;*/
-    height:200px;
+    height:180px;
     display:block;text-decoration:none;
-    background:url(../img/lottery/lottery1.png) no-repeat top center;
-    background-size: 100% 100%;
+    background:url(../img/mlottery/lottery-btn.png) no-repeat top center;
+    background-size: cover;
+    margin:0 0 1px 2px;
 }
 #lottery table td a:hover{
-    background-image:url(../img/lottery/lottery2.png);
+    /*background-image:url(../img/lottery/lottery2.png);*/
 }
 #lottery table td.active .mask{display:block;}
 .mask{
-    width:100%;
-    height:100%;
+    width:180px;height:180px;border-radius:10px;margin:3px 4px 0 4px;
     position:absolute;
     left:-5px;
     top: 0;
-    background:url(../img/lottery/mask.png) no-repeat;
+    background:url(../img/mlottery/mask.png) no-repeat;
     background-size: 100% 100%;
     display:none;
-    border-radius: 10px;
 }
 
-.l_count{
-    position: absolute;
-    top: 660px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fee566;
-    left: 340px;
+.lottery-footer{
+    width: 90%;
+    display: inline-block;
+    padding:30px 0;
+    font-size:15px;
 }
-.l_count p{ float:left; width: 60px; }
-.l_count p:nth-child(2){
-    margin-left: 160px;
+
+.lottery-footer ul, .lottery-footer li, .lottery-footer h3{
+    padding:0;
+    margin:0;
 }
-.l_count p:nth-child(3){
-    margin-left: 135px;
+
+.lottery-footer h3{
+    font-size:20px;
+}
+
+
+.lottery-list{
+    position:relative;
+    top:20px;
+    height:150px;
+    background-color: #ffefef;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+
+
+.lottery-body img{
+    width:100%;
+}
+
+.lottery-rule{
+    padding-top:10px;
+    background-color: #ff6259;
+    color:#fdc21c;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+
+
+
+.lottery-rule ul{
+    padding:8px 14px;
+}
+
+.lottery-rule li{
+    text-align: left;
+    line-height:1.8;
+    margin-bottom:8px;
 }
 
 .list{
@@ -101,11 +142,7 @@ img.wz{
 .list ul li span{ text-align: center; display: inline-block;}
 
 
-.lottery-list{
-    /*width: 600px;*/
-    height: 400px;
-    /*top: 1000px;*/
-}
+
 /*.lottery-list ul li span:nth-child(1){ width: 220px;}*/
 /*.lottery-list ul li span:nth-child(2){ width: 220px; margin-left:120px; }*/
 
@@ -120,5 +157,17 @@ img.wz{
 @media only screen and (max-width: 768px){
     .mobile_hide{
         display: none;
+    }
+    #lottery{
+        width:96%;
+    }
+    .lottery-footer{
+        width:94%;
+    }
+    .lottery-footer{
+        font-size:13px;
+    }
+    .lottery-footer h3{
+        font-size:18px;
     }
 }

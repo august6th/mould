@@ -23,7 +23,7 @@
 <body>
 <div class="container">
     @include('layouts._header')
-    <div class="col-md-offset-1 col-md-10 content">
+    <div class="col-md-offset-1 col-md-10 content np">
         @include('shared._messages')
         @yield('content')
         @include('layouts._footer')

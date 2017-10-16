@@ -1,6 +1,6 @@
 var lottery = {
     index: 0, //当前转动到哪个位置，起点位置
-    count: 16, //总共有多少个位置
+    count: 8, //总共有多少个位置
     timer: 0, //setTimeout的ID，用clearTimeout清除
     speed: 20, //初始转动速度
     times: 0, //转动次数
@@ -45,7 +45,7 @@ function roll() {
             title:'中奖啦！',
             showBoxShadow:true,
             buttons:[{name: '确定',className: 'defalut'}],
-            discription:'恭喜您！获得\"' + prize_name + '\"</br>请在“我的奖品”中查看并领取。',
+            discription:'恭喜您！获得\"' + prize_name + '\"</br>请在“我的奖品”中查看并到<span style="color:red">指定地点</span>领取。',
             buttonsSameWidth:true,
             animateIn:'rotateInUpLeft-hastrans',
             animateOut:'rotateOutUpLeft-hastrans'}, function(){
@@ -85,9 +85,9 @@ function get_win_list(){
             return;
         }
 
-        html = '<ul>';
+        html = '<h3>获奖名单</h3><ul>';
         for(k in a){
-            html += '<li><span>'+ a[k].name +'</span><span>'+ a[k].gname +'</span></li>';
+            html += '<li><span class="name">'+ a[k].name +'</span><span class="gname">'+ a[k].gname +'</span></li>';
         }
         html += '</ul>';
         $('.lottery-list').html(html);
@@ -106,6 +106,28 @@ function get_win_list(){
 
 var click = false;
 $(function() {
+    var lv = parseFloat(parseInt($('#lottery').width()) / 682);
+    $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
+    $('#lottery table').css({'top' : Math.floor(62 * lv) + 'px', 'left' : Math.floor(64 * lv) + 'px'});
+    $('#lottery table td').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+    $('#lottery table td img').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(10 * lv) + 'px'});
+    $('#lottery table td a').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+    $('.mask').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(3 * lv) + 'px' });
+    $('.lottery-head').css({'height' : Math.floor(286 * lv) + 'px'});
+    $('.lottery-list').css({'margin-left' : Math.floor(20 * lv) + 'px', 'margin-right' : Math.floor(20 * lv) + 'px'});
+
+    $(window).resize(function () {
+        var lv = parseFloat(parseInt($('#lottery').width()) / 682);
+        $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
+        $('#lottery table').css({'top' : Math.floor(62 * lv) + 'px', 'left' : Math.floor(62 * lv) + 'px'});
+        $('#lottery table td').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+        $('#lottery table td img').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(10 * lv) + 'px'});
+        $('#lottery table td a').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px' });
+        $('.mask').css({'width' : Math.floor(180 * lv) + 'px', 'height' : Math.floor(180 * lv) + 'px', 'margin-top' : Math.floor(3 * lv) + 'px' });
+        $('.lottery-head').css({'height' : Math.floor(286 * lv) + 'px'});
+        $('.lottery-list').css({'margin-left' : Math.floor(20 * lv) + 'px', 'margin-right' : Math.floor(20 * lv) + 'px'});
+    })
+
     var ajax_url = "/lottery/get_win";
     lottery.init('lottery');
     /* 开始抽奖 */

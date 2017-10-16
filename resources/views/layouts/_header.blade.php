@@ -14,7 +14,7 @@
       <nav class="collapse navbar-collapse" id="default-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ route('share.index') }}"><span class="glyphicon glyphicon-list"></span> 分享</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-gift"></span> 抽奖</a></li>
+            <li><a href="{{ route('lottery.index') }}"><span class="glyphicon glyphicon-gift"></span> 抽奖</a></li>
         </ul>
       </nav>
     </div>
