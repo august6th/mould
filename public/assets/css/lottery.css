@@ -72,12 +72,15 @@
     font-size:15px;
 }
 
-.lottery-footer ul, .lottery-footer li, .lottery-footer h3{
+.lottery-footer ul, .lottery-footer li{
     padding:0;
     margin:0;
+    list-style-type: none;
 }
 
 .lottery-footer h3{
+    padding:0;
+    margin:0;
     font-size:20px;
 }
 

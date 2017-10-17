@@ -8,7 +8,8 @@
     <!-- CSS -->
     {{--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">--}}
     {{--<link rel="stylesheet" href="http://fonts.useso.com/css?family=Roboto:400,100,300,500">--}}
-    <link rel="stylesheet" href="/assets/css/dialog.css">
+
+    <link rel="stylesheet" href="/assets/css/sweetalert.css">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/lottery.css">
@@ -32,7 +33,7 @@
 <!-- Javascript -->
 <script src="/assets/js/jquery-1.11.1.min.js"></script>
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/dialog.js"></script>
+<script src="/assets/js/sweetalert.min.js"></script>
 <script src="/assets/js/jquery.totemticker.js"></script>
 <script src="/assets/js/lottery.js"></script>
 

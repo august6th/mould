@@ -40,17 +40,9 @@ function roll() {
     var prize_site = $("#lottery").attr("prize_site");
     if (lottery.times > lottery.cycle + 10 && lottery.index == prize_site) {
         var prize_name = $("#lottery").attr("prize_name");
-        $('body').dialog({
-            type:'success',
-            title:'中奖啦！',
-            showBoxShadow:true,
-            buttons:[{name: '确定',className: 'defalut'}],
-            discription:'恭喜您！获得\"' + prize_name + '\"</br>请在“我的奖品”中查看并到<span style="color:red">指定地点</span>领取。',
-            buttonsSameWidth:true,
-            animateIn:'rotateInUpLeft-hastrans',
-            animateOut:'rotateOutUpLeft-hastrans'}, function(){
-            get_win_list();
-        });
+
+        swal("中奖啦!", '恭喜您！获得\"' + prize_name + '\"请在“我的奖品”中查看并到指定地点领取。', "success");
+        get_win_list();
 
         clearTimeout(lottery.timer);
         lottery.prize = -1;
@@ -104,8 +96,6 @@ function get_win_list(){
     }, 'json');
 }
 
-/*抽奖响应式*/
-
 
 var click = false;
 $(function() {
@@ -120,14 +110,13 @@ $(function() {
     lottery.init('lottery');
     /* 开始抽奖 */
     $("#lottery a").click(function() {
-        console.log(click);
+        // console.log(click);
         if (click) {
             return false;
         } else {
             $.get(ajax_url, {uid: 1}, function(a) { // 获取奖品，也可以在这里判断是否登陆状态
                 if(!a.code){
-                    var _url = a.status == 2 ? '/login' : '/login';
-                    return $('body').dialog({type:'danger',discription:a.msg});
+                    return swal("抱歉!", a.msg, "error");
                 }else if(a.win){
                     $("#lottery").attr("prize_site", a.win.id);
                     $("#lottery").attr("prize_name", a.win.name);
@@ -143,7 +132,8 @@ $(function() {
     });
     /*获取中奖信息*/
     get_win_list();
-
+    
+    /*抽奖响应式*/
     function set_responsive (){
         var lv = parseFloat(parseInt($('#lottery').width()) / 682);
         $('#lottery').css({'height' : Math.floor(684 * lv) + 'px'});
