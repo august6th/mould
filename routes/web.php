@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function
 });
 
 Route::get('/go', function () {
-    return redirect('http://i.eqxiu.com/s/h3J0R6mM?share_level=1&from_user=067b0979-a11c-46a4-ad1f-0bbabf4facc3&from_id=5b7233d6-c8df-4c09-a5bc-4f89033f6d64&share_time=1506753814634');
+    return redirect('http://u.eqxiu.com/s/iQYubxUD?eqrcode=1&share_level=2&from_user=1ddce479-ee26-499a-9409-d960fe50034c&from_id=50b7973a-e217-46eb-a39a-af00d8693550&share_time=1508226100390&from=singlemessage');
 });
 
 //抽奖相关路由
