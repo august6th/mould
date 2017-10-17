@@ -28,9 +28,6 @@
             <div class="lottery-footer">
                 <div class="list lottery-list">
                 </div>
-                <div class="lottery-middle">
-                    <img src="./assets/img/mlottery/lottery-list.png" alt="lottery-list">
-                </div>
                 <div class="lottery-rule">
                     <h3>活动规则</h3>
                     <ul>

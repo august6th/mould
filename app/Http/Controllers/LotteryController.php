@@ -11,6 +11,12 @@ use App\Models\GoodLog;
 
 class LotteryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isadmin', [
+            'only' => ['show', 'destroy', 'edit', 'update', 'change']
+        ]);
+    }
     // 摇奖操作 获取中奖结果 并返回 信息
     private function get_win()
     {
@@ -144,64 +150,48 @@ class LotteryController extends Controller
     public function start()
     {
         $arr = $this->get_win();
-        $data = json_encode($arr);
-        return $data;
+        return $arr;
     }
 
     public function get_list()
     {
         $arr = $this->get_new_win();
-        $data = json_encode($arr);
-        return $data;
+        return $arr;
     }
 
     public function show()
     {
-        $user = Auth::user();
-        if ($user->is_admin) {
-            $goods = DB::select('select * from goods');
-//            dd($goods);
-            if (!empty($goods)) {
-                return view('lottery.show', ['goods' => $goods]);
-            } else {
-                return view('lottery.show');
-            }
+        $goods = Good::all();
+        if (count($goods) > 0) {
+            return view('lotteries.show', compact('goods'));
         } else {
-            session()->flash('danger', '抱歉，您不是管理员！');
-            return redirect('/');
+            return view('lotteries.show');
         }
     }
 
-    public function destroy($good)
+    public function edit()
     {
-        $deleted = DB::delete('delete from goods where gid = ?', ["$good"]);
-        if ($deleted) {
-            session()->flash('success', '删除成功！');
-            return redirect()->back();
-        } else {
-            session()->flash('danger', '删除失败, 请稍后重试!');
-            return redirect()->back();
-        }
+        return view('lotteries.edit');
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'goods_id' => 'required',
             'gname' => 'required',
-            'gimg' => 'required',
+            'dstock' => 'required',
             'gstock' => 'required',
             'probability' => 'required',
-            'description' => 'required'
+            'gimg' => 'required',
+            'con_point' => 'required',
         ]);
 
         $good = Good::create([
-            'goods_id' => $request->goods_id,
             'gname' => $request->gname,
-            'gimg' => $request->gimg,
+            'dstock' => $request->dstock,
             'gstock' => $request->gstock,
             'probability' => $request->probability,
-            'description' => $request->description,
+            'gimg' => $request->gimg,
+            'con_point' => $request->con_point,
         ]);
 
         if ($good) {
@@ -211,50 +201,51 @@ class LotteryController extends Controller
             session()->flash('danger', '操作失败，请稍后再试！');
             return redirect('lottery.edit');
         }
-
     }
 
-    public function edit()
+    public function destroy($good)
     {
-        return view('lottery.edit');
+        $deleted = DB::delete('delete from goods where id = ?', ["$good"]);
+        if ($deleted) {
+            session()->flash('success', '删除成功！');
+            return redirect()->back();
+        } else {
+            session()->flash('danger', '删除失败, 请稍后重试!');
+            return redirect()->back();
+        }
     }
 
     public function change($good)
     {
-        $good_arr = DB::select('select * from goods where gid = ?', ["$good"]);
+        $good_arr = DB::select('select * from goods where id = ?', ["$good"]);
         $goods = $good_arr[0];
-        return view('lottery.change', ['goods' => $goods]);
+        return view('lotteries.change', compact('goods'));
     }
 
     public function update(Request $request, $good)
     {
-        $this->validate($request, [
-            'goods_id' => 'required',
-            'gname' => 'required',
-            'gimg' => 'required',
-            'gstock' => 'required',
-            'probability' => 'required',
-            'description' => 'required'
-        ]);
+        $update = [];
+        foreach( $request->except(['_token', '_method']) as $key => $value){
+            if($value){
+                $update[$key] = $value;
+            }
+        }
 
-        $affected = DB::table('goods')
-            ->where('gid', $good)
-            ->update(array(
-                'goods_id' => $request->goods_id,
-                'gname' => $request->gname,
-                'gimg' => $request->gimg,
-                'gstock' => $request->gstock,
-                'probability' => $request->probability,
-                'description' => $request->description,
-            ));
+        if(count($update) > 0){
+            $affected = DB::table('goods')
+                ->where('id', $good)
+                ->update($update);
+        }else{
+            session()->flash('danger', '您没有修改任何内容！');
+            return redirect()->route('lottery.show');
+        }
 
         if ($affected) {
             session()->flash('success', '修改成功！');
             return redirect()->route('lottery.show');
         } else {
             session()->flash('danger', '操作失败，请稍后再试！');
-            return redirect('lottery.change', $good);
+            return redirect()->route('lottery.show');
         }
     }
-
 }

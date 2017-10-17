@@ -18,25 +18,16 @@
     margin-top:20px;
     display: inline-block;
     width:90%;
-    /*margin: 0px auto;*/
     background: url(../img/mlottery/lottery.png) no-repeat;
     background-size: cover;
-    /*position: absolute;*/
-    /*top: 110px;*/
-    /*left: 150px;*/
 }
-img.wz{
-    position: absolute;
-    left: 0;
-    top: 10px;
-}
+
 #lottery table{
     position: relative;
-    /*padding-top:57px;*/
-    /*padding-left: 65px;*/
     top:20px;
     left:31px;
 }
+
 #lottery table td{
     position:relative;
     width:180px;
@@ -90,35 +81,50 @@ img.wz{
     font-size:20px;
 }
 
-
 .lottery-list{
-    position:relative;
-    top:20px;
-    height:150px;
+    height:178px;
     background-color: #ffefef;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     margin-left:20px;
     margin-right:20px;
+    color:#e9433a;
+    line-height:1.8;
 }
 
+.lottery-list h3{
+    padding:18px 0 4px 0;
+}
 
+.lottery-list ul{
+    padding:1px 60px;
+}
+
+.lottery-list ul li{
+    text-align: left;
+    position:relative;
+}
+
+.lottery-list ul li .gname{
+    position:absolute;
+    display: inline-block;
+    right:0;
+}
 
 .lottery-body img{
     width:100%;
 }
 
 .lottery-rule{
-    padding-top:10px;
+    z-index:999;
+    padding-top:18px;
     background-color: #ff6259;
     color:#fdc21c;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
-
-
-
-
 
 .lottery-rule ul{
     padding:8px 14px;
@@ -129,20 +135,6 @@ img.wz{
     line-height:1.8;
     margin-bottom:8px;
 }
-
-.list{
-    /*overflow: hidden; position: absolute; right:220px;*/
-}
-.list ul li {
-    transition: none !important; color:#000; font-size: 16px;
-    line-height: 25px;
-}
-.list ul li span{ text-align: center; display: inline-block;}
-
-
-
-/*.lottery-list ul li span:nth-child(1){ width: 220px;}*/
-/*.lottery-list ul li span:nth-child(2){ width: 220px; margin-left:120px; }*/
 
 .table-goods > tbody > tr > td{
     line-height:2.42857143;
