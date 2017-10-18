@@ -114,7 +114,7 @@ $(function() {
         if (click) {
             return false;
         } else {
-            $.get(ajax_url, {uid: 1}, function(a) { // 获取奖品，也可以在这里判断是否登陆状态
+            $.get(ajax_url, function(a) { // 获取奖品，也可以在这里判断是否登陆状态
                 if(!a.code){
                     return swal("抱歉!", a.msg, "error");
                 }else if(a.win){
@@ -125,7 +125,7 @@ $(function() {
                     click = true;
                     return false;
                 }else{
-                    return $('body').dialog({type:'danger',discription:"通讯错误 稍后再试"});
+                    return swal("抱歉!", '通信错误，请稍后重试！', "error");;
                 }
             }, "json")
         }

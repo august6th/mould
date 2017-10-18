@@ -30,10 +30,10 @@ class LotteryController extends Controller
             $lottery_flag = $wechat[0]->lottery_flag;
             $json = array('code' => 0, 'msg' => '', 'uid' => $user_id);
         } else if($count == 0) {
-           $json = array('code' => 0, 'msg' => '您未参与签到！', 'uid' => 0);
-           return $json;
+            $json = array('code' => 0, 'msg' => '您未参与签到！');
+            return $json;
         } else {
-            $json = array('code' => 0, 'msg' => '未知错误，请联系管理员。', 'uid' => 0);
+            $json = array('code' => 0, 'msg' => '未知错误，请联系管理员。');
             return $json;
         }
 
@@ -43,19 +43,35 @@ class LotteryController extends Controller
             return $json;
         }
 
-        $arr = array(
-            '0' => array('id' => 0, 'good_id' => 1, 'name' => '充电数据线', 'v' => 5),
-            '1' => array('id' => 1, 'good_id' => 2, 'name' => '充电宝', 'v' => 3),
-            '2' => array('id' => 2, 'good_id' => 3, 'name' => '矿泉水', 'v' => 20),
-            '3' => array('id' => 3, 'good_id' => 4, 'name' => '电热水壶', 'v' => 1),
-            '4' => array('id' => 4, 'good_id' => 5, 'name' => '矿泉水', 'v' => 20),
-            '5' => array('id' => 5, 'good_id' => 6, 'name' => '玻璃杯套装', 'v' => 3),
-            '6' => array('id' => 6, 'good_id' => 7, 'name' => '保温杯', 'v' => 3),
-            '7' => array('id' => 7, 'good_id' => 8, 'name' => '矿泉水', 'v' => 20),
-        );
+        $goods = Good::all()->toArray();
+        $arr = [];
+        foreach ($goods as $key => $values) {
+            if( $values['dstock'] != 0 ){
+                $arr[$key] = ['id' => $key , 'good_id' => $values['id'], 'name' => $values['gname'], 'v' => $values['probability'] ];
+            } else {
+                $arr[$key] = ['id' => $key , 'good_id' => $values['id'], 'name' => $values['gname'], 'v' => 0 ];
+            }
+        }
+
+//        $arr = array(
+//            '0' => array('id' => 0, 'good_id' => 1, 'name' => '充电数据线', 'v' => 5),
+//            '1' => array('id' => 1, 'good_id' => 2, 'name' => '充电宝', 'v' => 3),
+//            '2' => array('id' => 2, 'good_id' => 3, 'name' => '矿泉水', 'v' => 20),
+//            '3' => array('id' => 3, 'good_id' => 4, 'name' => '电热水壶', 'v' => 1),
+//            '4' => array('id' => 4, 'good_id' => 5, 'name' => '矿泉水', 'v' => 20),
+//            '5' => array('id' => 5, 'good_id' => 6, 'name' => '玻璃杯套装', 'v' => 3),
+//            '6' => array('id' => 6, 'good_id' => 7, 'name' => '保温杯', 'v' => 3),
+//            '7' => array('id' => 7, 'good_id' => 8, 'name' => '矿泉水', 'v' => 20),
+//        );
         /*  开始抽奖  */
         $key = $this->get_rand($arr);
+        if( $key === false ){
+            $json = array('code' => 0, 'msg' => '您来迟啦，今天的活动奖品已经兑换完了，明天再过来吧！');
+            return $json;
+        }
         $win = $arr[$key];
+        $good_id = $win['good_id'];
+
         //输出抽奖信息
 //        echo $user_id."<br>";
 //        echo $lottery_flag."<br>";
@@ -63,15 +79,17 @@ class LotteryController extends Controller
 //        echo "<pre>";
 //        print_r($win);
 //        echo "</pre>";
-//
 //        exit;
 
-        $good = DB::select('select * from goods where id = ?', [$win['good_id']]);
+        $good = DB::select('select * from goods where id = ?', [$good_id]);
 
         // 抽奖成功
         if (count($good) > 0) {
             //用户失去唯一抽奖机会
             $affected = DB::update('update signs set lottery_flag = 1 where id = ?', [$user_id]);
+
+            //设置放行库存和总库存减一
+            $affect = DB::update('update goods set dstock = dstock - 1, gstock = gstock -1 where id = ?', [$good_id]);
 
             //添加抽奖记录
             $inserted = GoodLog::create([
@@ -79,7 +97,7 @@ class LotteryController extends Controller
                 'good_id' => $win['good_id']
             ]);
 
-            if ($affected && $inserted) {
+            if ($affected && $inserted && $affect) {
                 return array(
                     'code' => 1,
                     'status' => 1,
@@ -109,16 +127,20 @@ class LotteryController extends Controller
         // 概率数组的总概率
         $proSum = array_sum($arr);
         // 概率数组循环
-        foreach ($arr as $k => $v) {
-            $randNum = mt_rand(1, $proSum);
-            if ($randNum <= $v) {
-                $result = $k;
-                break;
-            } else {
-                $proSum -= $v;
+        if ($proSum != 0) {
+            foreach ($arr as $k => $v) {
+                $randNum = mt_rand(1, $proSum);
+                if ($randNum <= $v) {
+                    $result = $k;
+                    break;
+                } else {
+                    $proSum -= $v;
+                }
             }
+            return $result;
+        } else {
+            return false;
         }
-        return $result;
     }
 
     private function get_new_win()
