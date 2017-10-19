@@ -36,6 +36,7 @@
 <script src="/assets/js/sweetalert.min.js"></script>
 <script src="/assets/js/jquery.totemticker.js"></script>
 <script src="/assets/js/lottery.js"></script>
+<script src="/assets/js/common.js"></script>
 
 </body>
 
