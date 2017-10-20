@@ -24,7 +24,7 @@
             </div>
             <div class="panel-body">
                 @if (count($prizes) > 0)
-                    <table class="table table-hover table-striped table-goods">
+                    <table class="table table-hover table-striped table-goods table-prizes">
                         <thead>
                         <tr>
                             <th>奖品名</th>

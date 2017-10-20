@@ -8,7 +8,11 @@
                 <img src="{{ $wechat_user->getAvatar() }}" alt="{{ $wechat_user->getNickname() }}" class="gravatar"/>
                 <h1>{{ $wechat_user->getNickname() }}</h1>
                 <button class="btn btn-md btn-info share-btn"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
-                <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
+                <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-btn"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
+                @if ( $wechat_user->getId()  == 'od-pK0ggVR3vpOAJwic9DFMyzX1Q' )
+                <a href="{{ route('lottery.show') }}" class="btn btn-md btn-success"><i class="fa fa-cog" aria-hidden="true"></i> 管理</a>
+                @endif
+
             </section>
         </div>
     </div>
