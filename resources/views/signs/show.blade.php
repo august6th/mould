@@ -7,7 +7,8 @@
             <section class="user_info">
                 <img src="{{ $wechat_user->getAvatar() }}" alt="{{ $wechat_user->getNickname() }}" class="gravatar"/>
                 <h1>{{ $wechat_user->getNickname() }}</h1>
-                <button class="btn btn-md btn-info share_btn">查看分享</button>
+                <button class="btn btn-md btn-info share-btn"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
+                <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
             </section>
         </div>
     </div>

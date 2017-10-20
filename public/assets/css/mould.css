@@ -61,8 +61,8 @@ section.user_info .gravatar {
 section.user_info h1 {
     font-size: 1.4em;
     letter-spacing: -1px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 22px;
+    margin-top: 22px;
 }
 
 .gravatar {
@@ -76,6 +76,10 @@ section.user_info h1 {
 
 .share-body{
     margin-bottom:10px;
+}
+
+.share-btn{
+    margin-right:10px;
 }
 
 .ib {

@@ -17,7 +17,7 @@ class LotteryController extends Controller
             'only' => ['show', 'destroy', 'edit', 'update', 'change']
         ]);
     }
-    // 摇奖操作 获取中奖结果 并返回 信息
+    // 摇奖操作 获取中奖结果 并返回信息
     private function get_win()
     {
         $wechat_user = session('wechat.oauth_user');

@@ -27,8 +27,8 @@
                     <table class="table table-hover table-striped table-goods">
                         <thead>
                         <tr>
-                            <th>奖品名称</th>
-                            <th>领取位置</th>
+                            <th>奖品名</th>
+                            <th>领取点</th>
                             <th>状态</th>
                         </tr>
                         </thead>

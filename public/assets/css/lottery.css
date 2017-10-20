@@ -143,6 +143,10 @@
     line-height:2.42857143;
 }
 
+.table-goods > tbody > tr > td:nth-child(1){
+    width:30%;
+}
+
 .lottery-form{
     display: inline-block;
 }

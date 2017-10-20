@@ -40,8 +40,20 @@ function roll() {
     var prize_site = $("#lottery").attr("prize_site");
     if (lottery.times > lottery.cycle + 10 && lottery.index == prize_site) {
         var prize_name = $("#lottery").attr("prize_name");
-
-        swal("中奖啦!", '恭喜您！获得\"' + prize_name + '\"请在“我的奖品”中查看并到指定地点领取。', "success");
+        swal({
+                title: "中奖啦！",
+                text: '恭喜您！获得 “' + prize_name + '” 请在 “我的奖品” 中查看并到指定地点领取。',
+                type: "success",
+                showCancelButton: true,
+                confirmButtonColor: "#AEDEF4",
+                confirmButtonText: "查看奖品",
+                cancelButtonText: "确定",
+                closeOnConfirm: false
+            },
+            function(){
+                window.location.href = "/prize";
+            });
+        
         get_win_list();
 
         clearTimeout(lottery.timer);
@@ -76,7 +88,7 @@ function get_win_list(){
         if(typeof a != 'object'){
             return;
         }
-
+        
         html = '<h3>获奖名单</h3><ul>';
         for(k in a){
             html += '<li><span class="name">'+ a[k].name +'</span><span class="gname">'+ a[k].gname +'</span></li>';
@@ -132,7 +144,7 @@ $(function() {
     });
     /*获取中奖信息*/
     get_win_list();
-    
+
     /*抽奖响应式*/
     function set_responsive (){
         var lv = parseFloat(parseInt($('#lottery').width()) / 682);

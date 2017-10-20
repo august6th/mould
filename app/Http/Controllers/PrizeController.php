@@ -28,10 +28,13 @@ class PrizeController extends Controller
     
     public function update(Request $request)
     {
+        $wechat_user = session('wechat.oauth_user');
+        $openid = $wechat_user->getId();
         $id = $request->id;
+
         if (!is_null($id)) {
             $affected = DB::table('goods_log')
-                ->where('id', $id)
+                ->where(['id' => $id, 'user_oid' => $openid])
                 ->update([
                     'receive' => 1
                 ]);

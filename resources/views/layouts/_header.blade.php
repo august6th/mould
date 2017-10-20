@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/" id="logo">中国模具网</a>
+            <a class="navbar-brand" href="/share" id="logo">中国模具网</a>
         </div>
       <nav class="collapse navbar-collapse" id="default-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
