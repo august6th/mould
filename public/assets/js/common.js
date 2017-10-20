@@ -1,7 +1,7 @@
 $(function(){
 
 
-    $('.share-btn').click(function () {
+    $('.share-touch').click(function () {
         if( $(window).width() >= 375) {
             var imgSize = "300x239";
         } else {
