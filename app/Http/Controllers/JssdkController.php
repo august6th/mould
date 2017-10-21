@@ -15,6 +15,7 @@ class JssdkController extends Controller
         $wechat_user = session('wechat.oauth_user');
         $openid = $wechat_user->getId();
         $sign = Sign::where('openid', $openid)->count();
+        $flag = Sign::where('openid', $openid)->value('lottery_flag');
 
         if ($sign) {
             $app = new Application(['app_id' => env('WECHAT_APPID'), 'secret' => env('WECHAT_SECRET')]);
@@ -29,7 +30,7 @@ class JssdkController extends Controller
             );
 
             $config_json = json_encode($config);
-            return view('signs.show', compact('config_json', 'wechat_user'));
+            return view('signs.show', compact('config_json', 'wechat_user', 'flag'));
         } else {
             session()->flash('danger','请先签到');
             return redirect()->route('sign.index');

@@ -9,9 +9,12 @@
                 <h1>{{ $wechat_user->getNickname() }}</h1>
                 <div class="share-btns">
                     @if ( $wechat_user->getId()  == 'od-pK0ggVR3vpOAJwic9DFMyzX1Q' )
-                        <a href="{{ route('lottery.show') }}" class="btn btn-md btn-success"><i class="fa fa-cog" aria-hidden="true"></i>管理</a>
+                        <a href="{{ route('lottery.show') }}" class="btn btn-md share-btn btn-success"><i class="fa fa-cog" aria-hidden="true"></i>管理</a>
                     @endif
                     <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
+                    @if ( $flag )
+                        <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-lottery"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
+                    @endif
                 </div>
             </section>
         </div>
@@ -28,7 +31,9 @@
                 imgUrl: 'http://lh5.mouldzj.com/assets/img/yqh.png',
                 success: function (res) {
                     swal("感谢分享", "您的支持是对我们最大的动力", "success");
-                    $('.share-btns').append('<a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-btn"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>');
+                    if($('.share-lottery').length == 0){
+                        $('.share-btns').append('<a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-lottery"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>');
+                    }
                 },
                 cancel: function (res) {
                     swal("", "您取消了分享", "error");
