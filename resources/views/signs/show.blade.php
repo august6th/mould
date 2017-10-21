@@ -7,12 +7,12 @@
             <section class="user_info">
                 <img src="{{ $wechat_user->getAvatar() }}" alt="{{ $wechat_user->getNickname() }}" class="gravatar"/>
                 <h1>{{ $wechat_user->getNickname() }}</h1>
-                <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
-                <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-btn"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
-                @if ( $wechat_user->getId()  == 'od-pK0ggVR3vpOAJwic9DFMyzX1Q' )
-                <a href="{{ route('lottery.show') }}" class="btn btn-md btn-success"><i class="fa fa-cog" aria-hidden="true"></i> 管理</a>
-                @endif
-
+                <div class="share-btns">
+                    @if ( $wechat_user->getId()  == 'od-pK0ggVR3vpOAJwic9DFMyzX1Q' )
+                        <a href="{{ route('lottery.show') }}" class="btn btn-md btn-success"><i class="fa fa-cog" aria-hidden="true"></i>管理</a>
+                    @endif
+                    <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
+                </div>
             </section>
         </div>
     </div>
@@ -27,10 +27,11 @@
                 link: 'http://lh5.mouldzj.com/go',
                 imgUrl: 'http://lh5.mouldzj.com/assets/img/yqh.png',
                 success: function (res) {
-                    alert('感谢您的分享！');
+                    swal("感谢分享", "您的支持是对我们最大的动力", "success");
+                    $('.share-btns').append('<a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-btn"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>');
                 },
                 cancel: function (res) {
-                    alert('您已取消了分享！');
+                    swal("", "您取消了分享", "error");
                 }
             };
 
