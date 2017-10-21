@@ -8,11 +8,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>中国模具网</strong></h1>
+                    <h1><strong>乐清模具协会</strong></h1>
                     <div class="description">
                         <p>
-                            欢迎参观由<a href="http://www.mould.net.cn"><strong>中国模具网</strong></a>举办的全国模具展会
-                            这里有展会的最新消息和参展商信息。完成信息登录后将获得丰厚的奖品。
+                            欢迎参观第十九届乐清模具设备塑机展、工业自动化展。完成信息并分享后参与抽奖。
                         </p>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                     <div class="form-top">
                         <div class="form-top-left">
                             <h3>完成签到</h3>
-                            <p>填入信息完成签到，赢取丰厚奖品:</p>
+                            <p>填入信息完成签到，赢取奖品:</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-pencil-square-o"></i>
