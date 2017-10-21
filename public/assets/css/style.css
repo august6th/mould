@@ -6,6 +6,7 @@ body {
     color: #888;
     line-height: 30px;
     text-align: center;
+	background: url('../img/backgrounds/1.jpg');
 }
 
 strong { font-weight: 500; }
