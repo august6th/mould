@@ -88,10 +88,10 @@ function get_win_list(){
         if(typeof a != 'object'){
             return;
         }
-        
         html = '<h3>获奖名单</h3><ul>';
         for(k in a){
-            html += '<li><span class="name">'+ a[k].name +'</span><span class="gname">'+ a[k].gname +'</span></li>';
+            var myname = a[k].name.replace(/.(?=.)/g, '*');
+            html += '<li><span class="name">'+ myname +'</span><span class="gname">'+ a[k].gname +'</span></li>';
         }
         html += '</ul>';
         $('.lottery-list').html(html);

@@ -21,8 +21,13 @@ class PrizeController extends Controller
             })
             ->join('goods', 'goods_log.good_id', '=', 'goods.id')
             ->select('goods.gname', 'goods.gimg', 'goods.con_point', 'goods_log.receive', 'goods_log.id')
-            ->get();
+            ->get()->toArray();
 
+        foreach ($prizes as $prize) {
+            $arr = explode(',', $prize->con_point);
+            $prize->con_des = $arr[0];
+            $prize->con_poi = $arr[1];
+        }
         return view('prizes.index', compact('prizes'));
     }
     

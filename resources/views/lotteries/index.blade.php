@@ -9,17 +9,17 @@
                 <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="lottery-unit lottery-unit-0"><img src="/assets/img/mlottery/sjx.png"><div class="mask"></div></td>
-                        <td class="lottery-unit lottery-unit-1"><img src="/assets/img/mlottery/cdb.png"><div class="mask"></div></td>
+                        <td class="lottery-unit lottery-unit-1"><img src="/assets/img/mlottery/cdtz.png"><div class="mask"></div></td>
                         <td class="lottery-unit lottery-unit-2"><img src="/assets/img/mlottery/kqs.png"><div class="mask"></div></td>
                     </tr>
                     <tr>
-                        <td class="lottery-unit lottery-unit-7"><img src="/assets/img/mlottery/kqs.png"><div class="mask"></div></td>
+                        <td class="lottery-unit lottery-unit-7"><img src="/assets/img/mlottery/bwb.png"><div class="mask"></div></td>
                         <td><a href="javascript:;"></a></td>
-                        <td class="lottery-unit lottery-unit-3"><img src="/assets/img/mlottery/rsh.png"><div class="mask"></div></td>
+                        <td class="lottery-unit lottery-unit-3"><img src="/assets/img/mlottery/cdb.png"><div class="mask"></div></td>
                     </tr>
                     <tr>
-                        <td class="lottery-unit lottery-unit-6"><img src="/assets/img/mlottery/bwb.png"><div class="mask"></div></td>
-                        <td class="lottery-unit lottery-unit-5"><img src="/assets/img/mlottery/blb.png"><div class="mask"></div></td>
+                        <td class="lottery-unit lottery-unit-6"><img src="/assets/img/mlottery/kqs.png"><div class="mask"></div></td>
+                        <td class="lottery-unit lottery-unit-5"><img src="/assets/img/mlottery/rsh.png"><div class="mask"></div></td>
                         <td class="lottery-unit lottery-unit-4"><img src="/assets/img/mlottery/kqs.png"><div class="mask"></div></td>
                     </tr>
                 </table>

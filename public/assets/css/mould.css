@@ -85,3 +85,31 @@ section.user_info h1 {
 .ib {
     display: inline-block;
 }
+
+.prize-list-ul{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    text-align:center;
+}
+
+.prize-list-ul .img-responsive{
+    display: inline-block;
+}
+
+.prize-list-ul li{
+    width:95%;
+    display: inline-block;
+    list-style-type: none;
+    padding-bottom: 15px;
+
+}
+
+.prize-list-ul li i{
+    color:#333;
+}
+
+.prize-list-ul .con-point-des{
+    font-size:14px;
+    color:#666;
+}

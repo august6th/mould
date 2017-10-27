@@ -24,35 +24,25 @@
             </div>
             <div class="panel-body">
                 @if (count($prizes) > 0)
-                    <table class="table table-hover table-striped table-goods table-prizes">
-                        <thead>
-                        <tr>
-                            <th>奖品名</th>
-                            <th>领取点</th>
-                            <th>状态</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($prizes as $prize)
-                            <tr>
-                                <td>{{ $prize->gname }}</td>
-                                <td>{{ $prize->con_point }}</td>
-                                <td>
-                                    @if($prize->receive)
-                                        <a class="btn btn-sm btn-default" href="javascript:;">已领取</a>
-                                        @else
-                                        <form action="{{ route('prize.update') }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('PATCH') }}
-                                            <input type="hidden" name="id" value="{{ $prize->id }}">
-                                            <input type="submit" class="btn btn-sm btn-success" value="待领取">
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    @foreach ($prizes as $prize)
+                    <ul class="prize-list-ul">
+                        <li><img src="/assets/img/mlottery/{{ $prize->gimg  }}.png" alt="{{ $prize->gimg  }}" class="img-responsive"></li>
+                        <li class="con-point-des"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ $prize->con_des }}</li>
+                        <li class="con-point-des"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $prize->con_poi }}</li>
+                        <li>
+                            @if($prize->receive)
+                                <a class="btn btn-sm btn-default" href="javascript:;">已领取</a>
+                            @else
+                                <form action="{{ route('prize.update') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PATCH') }}
+                                    <input type="hidden" name="id" value="{{ $prize->id }}">
+                                    <input type="submit" class="btn btn-sm btn-success" value="待领取">
+                                </form>
+                            @endif
+                        </li>
+                    </ul>
+                    @endforeach
                 @else
                     <ul class="list-unstyled empty-list text-center">
                         <li><img src="/img/empty.png" alt="empty" class="img-responsive"></li>
