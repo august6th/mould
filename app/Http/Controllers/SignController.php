@@ -10,6 +10,16 @@ class SignController extends Controller
 {
     public function index()
     {
+//        dd(time());
+        /*
+         * 活动开始时间限制。
+        $now_time = time();
+        $start_time = strtotime('2017-11-9 9:00:00');
+        if( $now_time < $start_time ) {
+            return view('welcome');
+        }
+        */
+
         $wechat_user = session('wechat.oauth_user'); // 拿到授权用户资料
 
         $openid = $wechat_user->getId();

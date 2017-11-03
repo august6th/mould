@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="/assets/css/sweetalert.css">
         <title>中国模具网 - By ara</title>
         <link rel="shortcut icon" href="assets/ico/panda.png">
         <!-- Styles -->
@@ -43,7 +43,7 @@
             }
 
             .title {
-                font-size: 80px;
+                font-size: 55px;
             }
 
             .links > a {
@@ -74,5 +74,14 @@
                 </div>
             </div>
         </div>
+        <script src="/assets/js/sweetalert.min.js"></script>
+        <script>
+            swal({
+                title: "您来早了，活动尚未开始！",
+                text: "活动时间：2017-11-9 9:00",
+                imageUrl: "assets/img/time.png",
+                imageSize: "100x100"
+            });
+        </script>
     </body>
 </html>
