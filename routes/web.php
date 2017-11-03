@@ -44,3 +44,8 @@ Route::post('/lottery/store_goods','LotteryController@store')->name('lottery.sto
 Route::get('/prize', 'PrizeController@index')->name('prize.index');
 Route::patch('/prize', 'PrizeController@update')->name('prize.update');
 
+/*
+Route::get('/words', function() {
+   return view('test');
+});
+*/

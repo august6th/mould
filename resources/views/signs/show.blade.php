@@ -11,9 +11,10 @@
                     @if ( $wechat_user->getId()  == 'od-pK0ggVR3vpOAJwic9DFMyzX1Q' )
                         <a href="{{ route('lottery.show') }}" class="btn btn-md share-btn btn-success"><i class="fa fa-cog" aria-hidden="true"></i>管理</a>
                     @endif
-                    <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 分享</button>
                     @if ( $flag )
                         <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-lottery"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
+                    @else
+                        <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 点击右上角 <span class="point">●●●</span>分享后可参与抽奖</button>
                     @endif
                 </div>
             </section>
@@ -25,10 +26,10 @@
         wx.config( {!! $config_json !!} );
         wx.ready(function () {
             var shareData = {
-                title: '2017年乐清市模具展会邀请函',
+                title: '第 19 届乐清模具设备塑机自动化展已开幕！请接收参观指南！',
                 desc: '欢迎您来参加',
                 link: 'http://lh5.mouldzj.com/go',
-                imgUrl: 'http://lh5.mouldzj.com/assets/img/yqh.png',
+                imgUrl: 'http://lh5.mouldzj.com/assets/img/op_start.png',
                 success: function (res) {
                     swal("感谢分享", "您的支持是对我们最大的动力", "success");
                     if($('.share-lottery').length == 0){

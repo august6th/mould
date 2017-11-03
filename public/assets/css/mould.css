@@ -113,3 +113,10 @@ section.user_info h1 {
     font-size:14px;
     color:#666;
 }
+
+.point{
+    font-size:2px;
+    font-weight: 100;
+    padding:0 2px;
+    letter-spacing: 2px;
+}
