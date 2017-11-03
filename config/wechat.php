@@ -73,10 +73,10 @@ return [
         /*
          * 账号基本信息，请从微信公众平台/开放平台获取
          */
-        'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID', 'wx7da43fc32896eef9'),         // AppID
-        'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET', '86dd41bc2741231ff5241db6bb34a96b'),     // AppSecret
+        'app_id' => env('WECHAT_OFFICIAL_ACCOUNT_APPID', ''),         // AppID
+        'secret' => env('WECHAT_OFFICIAL_ACCOUNT_SECRET', ''),     // AppSecret
         'token' => env('WECHAT_OFFICIAL_ACCOUNT_TOKEN', 'aragaki'),          // Token
-        'aes_key' => env('WECHAT_OFFICIAL_ACCOUNT_AES_KEY', '86dd41bc2741231ff5241db6bb34a96b'),                    // EncodingAESKey
+        'aes_key' => env('WECHAT_OFFICIAL_ACCOUNT_AES_KEY', ''),                    // EncodingAESKey
 
         /*
          * OAuth 配置
