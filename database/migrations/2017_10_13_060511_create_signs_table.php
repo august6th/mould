@@ -22,6 +22,7 @@ class CreateSignsTable extends Migration
             $table->rememberToken();
             $table->boolean('lottery_flag')->default(false);
             $table->boolean('is_admin')->default(false);
+            $table->boolean('share_flag')->default(false);
             $table->timestamps();
         });
     }

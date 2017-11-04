@@ -47,3 +47,5 @@ Route::patch('/prize', 'PrizeController@update')->name('prize.update');
 Route::get('/words', function() {
    return view('test');
 });
+
+Route::post('/share_flag', 'SignController@setShareFlag');

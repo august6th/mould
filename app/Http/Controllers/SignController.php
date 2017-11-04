@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Sign;
+use Illuminate\Support\Facades\DB;
 
 class SignController extends Controller
 {
@@ -56,6 +57,21 @@ class SignController extends Controller
         } else {
             session()->flash('danger', '网络出错，请稍后重试!');
             return redirect()->back();
+        }
+    }
+
+    public function setShareFlag(Request $request)
+    {
+        $share_flag = $request->share_flag;
+        if ($share_flag) {
+            $wechat_user = session('wechat.oauth_user'); // 拿到授权用户资料
+            $openid = $wechat_user->getId();
+
+            $affected = DB::update('update signs set share_flag = ? where openid = ?', [$share_flag, $openid]);
+
+            return $affected;
+        } else {
+            return false;
         }
     }
 }

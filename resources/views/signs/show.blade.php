@@ -14,7 +14,9 @@
                     @if ( $flag )
                         <a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-lottery"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>
                     @else
-                        <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 点击右上角 <span class="point">●●●</span>分享后可参与抽奖</button>
+                        <button class="btn btn-md btn-info share-btn share-touch"><i class="fa fa-share" aria-hidden="true"></i> 点击右上角
+                            <img src="assets/img/dian.png" alt="" class="img-responsive point"> 分享后可参与抽奖
+                        </button>
                     @endif
                 </div>
             </section>
@@ -28,11 +30,19 @@
             var shareData = {
                 title: '第 19 届乐清模具设备塑机自动化展已开幕！请接收参观指南！',
                 desc: '欢迎您来参加',
-                link: 'http://lh5.mouldzj.com/go',
+                link: 'http://lh5.mouldzj.com/words',
                 imgUrl: 'http://lh5.mouldzj.com/assets/img/op_start.png',
                 success: function (res) {
-                    swal("感谢分享", "您的支持是对我们最大的动力", "success");
+
+                    $.post("/share_flag", {'_token':'{{csrf_token()}}', share_flag : 1}, function (data) {
+                        if (data) {
+                            swal("感谢分享", "您的支持是对我们最大的动力", "success");
+                        } else {
+                            swal('', "抱歉，服务出错，请稍后重试！", "error")
+                        }
+                    });
                     if($('.share-lottery').length == 0){
+                        $('.share-touch').css('display', 'none');
                         $('.share-btns').append('<a href="{{ route('lottery.index') }}" class="btn btn-md btn-danger share-lottery"><span class="glyphicon glyphicon-gift"></span> 抽奖</a>');
                     }
                 },
@@ -40,7 +50,6 @@
                     swal("", "您取消了分享", "error");
                 }
             };
-
             wx.onMenuShareQQ(shareData);
             wx.onMenuShareWeibo(shareData);
             wx.onMenuShareTimeline(shareData);
@@ -48,7 +57,7 @@
         });
 
         wx.error(function (res) {
-            alert(res.errMsg);
+            // alert(res.errMsg);
         });
     </script>
 @endsection

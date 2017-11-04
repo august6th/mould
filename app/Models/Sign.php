@@ -8,6 +8,6 @@ class Sign extends Model
 {
     //
     protected $fillable = [
-        'openid', 'name', 'corporate', 'telephone', 'lottery_flag', 'is_admin',
+        'openid', 'name', 'corporate', 'telephone', 'lottery_flag', 'is_admin', 'share_flag',
     ];
 }

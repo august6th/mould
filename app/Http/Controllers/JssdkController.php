@@ -15,7 +15,7 @@ class JssdkController extends Controller
         $wechat_user = session('wechat.oauth_user');
         $openid = $wechat_user->getId();
         $sign = Sign::where('openid', $openid)->count();
-        $flag = Sign::where('openid', $openid)->value('lottery_flag');
+        $flag = Sign::where('openid', $openid)->value('share_flag');
 
         if ($sign) {
             $app = new Application(['app_id' => env('WECHAT_APPID'), 'secret' => env('WECHAT_SECRET')]);
