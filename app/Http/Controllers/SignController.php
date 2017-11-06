@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class SignController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isadmin', [
+            'only' => ['show', 'getExcel']
+        ]);
+    }
+
     public function index()
     {
 //        dd(time());
@@ -72,6 +79,52 @@ class SignController extends Controller
             return $affected;
         } else {
             return false;
+        }
+    }
+    
+    public function show()
+    {
+        $signs = Sign::paginate(10);
+        $counts = Sign::count();
+//        dd($signs);
+        return view('signs.signer', compact('signs', 'counts'));
+    }
+
+    public function getExcel()
+    {
+        $signs = Sign::all()->toArray();
+        if (!empty($signs)) {
+            $detail = '';
+            $subject = '';
+            foreach ($signs as $key => $sign) {
+                $sign = collect($sign)->only('name', 'corporate', 'telephone');
+                foreach ($sign as $item => $value) {
+                    $value = preg_replace('/\s+/', ' ', $value);
+                    $value = preg_replace('/,/', "，", $value);
+                    $detail .= strlen($value) > 11 && is_numeric($value) ? '['.$value.']': $value.",";
+                }
+                $detail = $detail."\n";
+            }
+            $title = array(
+                'name' => '姓名',
+                'corporate' => '公司名称',
+                'telephone' => '联系方式'
+            );
+
+            foreach($title as $k => $v) {
+                $subject .= ($v ? $v : $k).",";
+            }
+
+            $detail = $subject."\n".$detail;
+            $filename = date('YmdHis', time()). '.csv';
+            ob_end_clean();
+            header('Content-Encoding: none');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename='.$filename);
+            header('Pragma: no-cache');
+            header('Expires: 0');
+            echo $detail;
+            exit();
         }
     }
 }
