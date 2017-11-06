@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class SignController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('isadmin', [
-            'only' => ['show', 'getExcel']
-        ]);
-    }
-
     public function index()
     {
 //        dd(time());
