@@ -14,7 +14,8 @@
 Route::any('/wechat', 'WeChatController@serve');
 
 Route::get('/', function () {
-    return view('welcome');
+    $lottery_close_flag = false;
+    return view('welcome', compact('lottery_close_flag'));
 });
 
 Route::group(['middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function () {

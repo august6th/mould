@@ -59,13 +59,18 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .m-b-md a{
+                color: #636b6f;
+                font-size:36px;
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    中国模具网
+                    <a href="{{ route('share.index') }}">返回活动页面</a>
                 </div>
 
                 <div class="links">
@@ -75,13 +80,14 @@
             </div>
         </div>
         <script src="/assets/js/sweetalert.min.js"></script>
+        @if($lottery_close_flag)
         <script>
             swal({
-                title: "您来早了，活动尚未开始！",
-                text: "活动时间：2017-11-9 9:00",
+                title: "您来晚了，抽奖活动已经结束！",
                 imageUrl: "assets/img/time.png",
                 imageSize: "100x100"
             });
         </script>
+        @endif
     </body>
 </html>
