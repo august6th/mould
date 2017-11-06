@@ -118,3 +118,8 @@ section.user_info h1 {
     display: inline-block;
     height:25px;
 }
+
+.footer a{
+    text-decoration: underline;
+    font-size: 13px;
+}
