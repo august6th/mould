@@ -255,7 +255,7 @@ class LotteryController extends Controller
     {
         $update = [];
         foreach( $request->except(['_token', '_method']) as $key => $value){
-            if($value){
+            if($value !== null){
                 $update[$key] = $value;
             }
         }
