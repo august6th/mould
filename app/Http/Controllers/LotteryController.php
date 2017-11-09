@@ -167,7 +167,7 @@ class LotteryController extends Controller
     {
         $now_time = time();
         $start_time = strtotime('2017-11-9 14:30:00');
-        $end_time = strtotime('2017-11-10 8:30:00');
+        $end_time = strtotime('2017-11-10 8:00:00');
         $close_time = strtotime('2017-11-10 15:00:00');
         if( ($now_time > $start_time && $now_time < $end_time) || $now_time > $close_time) {
             $lottery_close_flag = true;
