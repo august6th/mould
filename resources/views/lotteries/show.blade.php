@@ -19,7 +19,7 @@
                         <th>外库</th>
                         <th>总库</th>
                         <th class="mobile_hide">图片</th>
-                        <th class="mobile_hide">概率</th>
+                        <th>概率</th>
                         <th class="mobile_hide">位置</th>
                         <th>操作</th>
                     </tr>
@@ -32,7 +32,7 @@
                             <td>{{ $good->dstock }}</td>
                             <td>{{ $good->gstock }}</td>
                             <td class="mobile_hide">{{ $good->gimg }}</td>
-                            <td class="mobile_hide">{{ $good->probability }}</td>
+                            <td>{{ $good->probability }}</td>
                             <td class="mobile_hide">{{ $good->con_point }}</td>
                             <td>
                                 <form action="{{ route('lottery.destroy', $good->id) }}" method="post" class="lottery-form">
