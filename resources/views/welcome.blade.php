@@ -83,7 +83,7 @@
         @if($lottery_close_flag)
         <script>
             swal({
-                title: "您来晚了，抽奖活动已经结束！",
+                title: "您来晚了，今天的奖品已经抽完了！",
                 imageUrl: "assets/img/time.png",
                 imageSize: "100x100"
             });

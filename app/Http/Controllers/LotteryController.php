@@ -166,7 +166,7 @@ class LotteryController extends Controller
     public function index()
     {
         $now_time = time();
-        $start_time = strtotime('2017-11-10 18:00:00');
+        $start_time = strtotime('2017-11-9 14:30:00');
         if( $now_time > $start_time ) {
             $lottery_close_flag = true;
             return view('welcome', compact('lottery_close_flag'));
