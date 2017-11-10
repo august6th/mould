@@ -39,27 +39,36 @@ function roll() {
     lottery.roll();
     var prize_site = $("#lottery").attr("prize_site");
     if (lottery.times > lottery.cycle + 10 && lottery.index == prize_site) {
-        var prize_name = $("#lottery").attr("prize_name");
-        swal({
-                title: "中奖啦！",
-                text: '恭喜您！获得 “' + prize_name + '” 请在 “我的奖品” 中查看并到指定地点领取。',
-                type: "success",
-                showCancelButton: true,
-                confirmButtonColor: "#AEDEF4",
-                confirmButtonText: "查看奖品",
-                cancelButtonText: "确定",
-                closeOnConfirm: false
-            },
-            function(){
-                window.location.href = "/prize";
-            });
-        
-        get_win_list();
+        if( prize_site != 6 ) {
+            var prize_name = $("#lottery").attr("prize_name");
+            swal({
+                    title: "中奖啦！",
+                    text: '恭喜您！获得 “' + prize_name + '” 请在 “我的奖品” 中查看并到指定地点领取。',
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonColor: "#AEDEF4",
+                    confirmButtonText: "查看奖品",
+                    cancelButtonText: "确定",
+                    closeOnConfirm: false
+                },
+                function () {
+                    window.location.href = "/prize";
+                });
 
-        clearTimeout(lottery.timer);
-        lottery.prize = -1;
-        lottery.times = 0;
-        click = false;
+            get_win_list();
+
+            clearTimeout(lottery.timer);
+            lottery.prize = -1;
+            lottery.times = 0;
+            click = false;
+        } else {
+            swal({
+                title: "Oops..",
+                text: "谢谢您的参与！",
+                imageUrl: "assets/img/ty.png",
+                imageSize: "100x100"
+            });
+        }
     } else {
         if (lottery.times < lottery.cycle) {
             lottery.speed -= 10;

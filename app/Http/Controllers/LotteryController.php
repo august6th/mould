@@ -88,30 +88,45 @@ class LotteryController extends Controller
             //用户失去唯一抽奖机会
             $affected = DB::update('update signs set lottery_flag = 1 where id = ?', [$user_id]);
 
-            //设置放行库存和总库存减一
-            $affect = DB::update('update goods set dstock = dstock - 1, gstock = gstock -1 where id = ?', [$good_id]);
+            if ($key != 6) {
+                //设置放行库存和总库存减一
+                $affect = DB::update('update goods set dstock = dstock - 1, gstock = gstock -1 where id = ?', [$good_id]);
 
-            //添加抽奖记录
-            $inserted = GoodLog::create([
-                'user_oid' => $openid,
-                'good_id' => $win['good_id']
-            ]);
+                //添加抽奖记录
+                $inserted = GoodLog::create([
+                    'user_oid' => $openid,
+                    'good_id' => $win['good_id']
+                ]);
 
-            if ($affected && $inserted && $affect) {
+                if ($affected && $inserted && $affect) {
+                    return array(
+                        'code' => 1,
+                        'status' => 1,
+                        'win' => array(
+                            'id' => $win['id'],
+                            'name' => $win['name'],
+                            'con_point' => $good[0]->con_point,
+                        ),
+                    );
+                } else {
+                    $json['msg'] = '异常错误！';
+                    $json['status'] = 2;
+                    return $json;
+                }
+
+            } else {
                 return array(
                     'code' => 1,
-                    'status' => 1,
+                    'status' => 'xxcy',
+                    'msg' => '谢谢参与',
                     'win' => array(
                         'id' => $win['id'],
                         'name' => $win['name'],
                         'con_point' => $good[0]->con_point,
                     ),
                 );
-            } else {
-                $json['msg'] = '异常错误！';
-                $json['status'] = 2;
-                return $json;
             }
+
         } else {
             return array('code' => 0, 'status' => 4, 'msg' => '该活动 处于关闭状态，详情咨询客服！');
         }
