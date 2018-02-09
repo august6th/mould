@@ -52,8 +52,8 @@ class SignController extends Controller
         ]);
 
         if ($sign) {
-            session()->flash('info', '您已提交成功！');
-            session()->flash('warning', '我们会尽快为您开通免费试用资格！');
+            session()->flash('info', '我们会尽快为您开通免费试用资格！');
+            session()->flash('warning', '您已提交成功！');
             return redirect()->route('share.index');
         } else {
             session()->flash('danger', '网络出错，请稍后重试!');
