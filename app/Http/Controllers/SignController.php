@@ -28,7 +28,8 @@ class SignController extends Controller
         $sign = Sign::where('openid', $openid)->count();
 
         if ($sign) {
-            session()->flash('info', '您已签到');
+            session()->flash('warning', '我们会尽快为您开通免费试用资格！');
+            session()->flash('info', '您已提交成功！');
             return redirect()->route('share.index');
         }else{
             return view('signs.index', compact('wechat_user'));
