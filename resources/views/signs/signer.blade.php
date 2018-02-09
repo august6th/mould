@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', '签到用户')
+@section('title', '申请用户列表')
 
 @section('content')
     <div class="row">
@@ -7,7 +7,7 @@
             <a href="{{ route('sign.output') }}" class="btn btn-success"><i class="fa fa-table" aria-hidden="true"></i> 导出 Excel 表格</a>
             <p></p>
             <table class="table table-striped table-hover table-responsive">
-                <caption>签到用户列表 | 合计 {{ $counts }} 条数据</caption>
+                <caption>申请用户列表 | 合计 {{ $counts }} 条数据</caption>
                 <thead>
                 <tr>
                     <th>姓名</th>

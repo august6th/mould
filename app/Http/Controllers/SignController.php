@@ -28,7 +28,7 @@ class SignController extends Controller
         $sign = Sign::where('openid', $openid)->count();
 
         if ($sign) {
-            session()->flash('info', '您已签到');
+            session()->flash('info', '您已申请！无需重复申请！');
             return redirect()->route('share.index');
         }else{
             return view('signs.index', compact('wechat_user'));
@@ -52,7 +52,8 @@ class SignController extends Controller
         ]);
 
         if ($sign) {
-            session()->flash('success', '签到成功！');
+            session()->flash('success', '我们会尽快为您开通免费试用资格！');
+            session()->flash('warning', '提交成功！');
             return redirect()->route('share.index');
         } else {
             session()->flash('danger', '网络出错，请稍后重试!');

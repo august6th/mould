@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth:snsapi_userinfo']], function
 Route::get('/sign/aragakiyui_all', 'SignController@show')->name('sign.show');
 Route::get('/sign/aragakiyui_output', 'SignController@getExcel')->name('sign.output');
 
+/*
 Route::get('/go', function () {
     return redirect('http://u.eqxiu.com/s/iQYubxUD?eqrcode=1&share_level=2&from_user=1ddce479-ee26-499a-9409-d960fe50034c&from_id=50b7973a-e217-46eb-a39a-af00d8693550&share_time=1508226100390&from=singlemessage');
 });
@@ -53,3 +54,4 @@ Route::get('/words', function() {
 });
 
 Route::post('/share_flag', 'SignController@setShareFlag');
+*/
